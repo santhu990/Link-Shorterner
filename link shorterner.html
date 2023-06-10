@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Shortener</title>
+</head>
+<body>
+  <h1>Link Shortener</h1>
+  
+  <form onsubmit="shortenLink(event)">
+    <label for="originalLink">Original Link:</label>
+    <input type="text" id="originalLink" name="originalLink" required>
+    <button type="submit">Shorten</button>
+  </form>
+
+  <p id="shortenedLink"></p>
+
+  <script>
+    function shortenLink(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      var originalLinkInput = document.getElementById("originalLink");
+      var shortenedLinkOutput = document.getElementById("shortenedLink");
+
+      // Generate a random 6-character string as the shortened link
+      var randomString = Math.random().toString(36).substring(2, 8);
+
+      // Build the shortened link using the current hostname and the random string
+      var shortenedLink = window.location.hostname + "/" + randomString;
+
+      // Display the shortened link to the user
+      shortenedLinkOutput.innerHTML = "Shortened Link: <a href='" + shortenedLink + "'>" + shortenedLink + "</a>";
+
+      // Optionally, you can do something else with the shortened link, such as storing it in a database
+      // or copying it to the clipboard.
+    }
+  </script>
+</body>
+</html>
